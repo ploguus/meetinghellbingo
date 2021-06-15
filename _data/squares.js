@@ -30,5 +30,5 @@ export default [
   { id: nanoid(), label: 'Oversharing' },
   { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
   { id: nanoid(), label: 'Toilet noises' },
-  { id: nanoid(), label: '' }
+  { id: nanoid(), label: 'Caught not paying attention' }
 ]
