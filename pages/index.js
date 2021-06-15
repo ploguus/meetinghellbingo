@@ -10,7 +10,7 @@ const BingoSquare = ({ index, id, label, checked, onClick, isClickable = true } 
   <button
     className={`h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-white'}`}
     onClick={() => isClickable && onClick(id, index)}>
-    <p className={`text-center text-md ${checked ? 'text-white' : 'text-red-700'}`}>{label} {index}</p>
+    <p className={`text-center text-md ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
   </button>
 )
 
