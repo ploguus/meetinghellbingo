@@ -27,8 +27,8 @@ export default [
   { id: nanoid(), label: '10 minute long opinion speech' },
   { id: nanoid(), label: 'Cat showing its ass like it\'s Onlyfans' },
   { id: nanoid(), label: 'Presenter needs to restart' },
+  { id: nanoid(), label: 'Oversharing' },
   { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
-  { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
-  { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
-  { id: nanoid(), label: 'Breakout groups but for pure bullshit' }
+  { id: nanoid(), label: 'Toilet noises' },
+  { id: nanoid(), label: '' }
 ]

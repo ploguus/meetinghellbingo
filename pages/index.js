@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import Head from 'next/head'
+import { useWindowSize } from 'react-use'
+import Confetti from 'confetti-react'
 
-import { randomNumber, slugify, deslugify } from '../lib/helpers'
+import { randomNumber, slugify, checkWin } from '../lib/helpers'
 import squareSource from '../_data/squares'
 
-const BingoSquare = ({ id, label, checked, onClick, isClickable = true } = {}) => (
+const BingoSquare = ({ index, id, label, checked, onClick, isClickable = true } = {}) => (
   <button
-    className={`h-24 flex items-center justify-center p-2 ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-white'}`}
-    onClick={() => isClickable && onClick(id)}>
-    <p className={`text-center text-lg ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
+    className={`h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-white'}`}
+    onClick={() => isClickable && onClick(id, index)}>
+    <p className={`text-center text-md ${checked ? 'text-white' : 'text-red-700'}`}>{label} {index}</p>
   </button>
 )
 
 export default function Home(props) {
+  const { width, height } = useWindowSize()
+
   const [ squares, setSquares ] = useState([])
   const [ checked, setChecked ] = useState([])
   const [ slug, setSlug ] = useState()
+  const [ winner, setWinner ] = useState(false)
 
   useEffect(() => {
     const shuffled = []
@@ -40,33 +45,49 @@ export default function Home(props) {
     setSlug(slugString)
   }, [])
 
-  const onClickSquare = clickedId => {
-    const isChecked = checked.includes(clickedId)
+  useEffect(() => {
+    const isWinner = checkWin(checked)
+    setWinner(isWinner)
+  }, [checked])
 
-    if (isChecked) setChecked(checked.filter((id) => id !== clickedId))
-    else setChecked([ ...checked, clickedId ])
+  const onClickSquare = (clickedId, index) => {
+    const square = squares[index]
+    const isChecked = checked.includes(index)
+
+    if (isChecked) setChecked(checked.filter((i) => i !== index))
+    else setChecked([ ...checked, index ])
   }
 
   return (
-    <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen h-screen">
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="bg-white w-1/2 shadow-2xl rounded-lg">
-          <h1 className="text-6xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg">Meeting Hell Bingo</h1>
+    <>
+      <Head>
+        <title>Are you in meeting hell?</title>
+      </Head>
+      {winner ? <Confetti width={width} height={height} /> : null}
+      <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen h-screen">
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="bg-white w-1/2 shadow-2xl rounded-lg">
+            <h1 className="text-6xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
 
-          <div className="grid grid-cols-5 grid-flow-row gap-2 px-2">
-            {squares.map((props) => (
-              <BingoSquare
-                {...props}
-                key={props.id}
-                checked={props.id === 'FREE' || checked.includes(props.id)}
-                onClick={onClickSquare} />
-            ))}
-          </div>
+            <div className="grid grid-cols-5 grid-flow-row gap-2 px-4 py-8">
+              {squares.map((props, index) => (
+                <BingoSquare
+                  {...props}
+                  index={index}
+                  key={props.id}
+                  checked={props.id === 'FREE' || checked.includes(index)}
+                  onClick={onClickSquare} />
+              ))}
+            </div>
 
-          <div className="rounded-b-lg py-4">
+            <div className="rounded-b-lg py-4">
+              <p className="text-center text-sm text-gray-400">
+                This is a fun project by <a className="font-bold" href="https://fiiv.dev">@fiiv</a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
