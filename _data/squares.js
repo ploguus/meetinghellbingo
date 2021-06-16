@@ -30,5 +30,7 @@ export default [
   { id: nanoid(), label: 'Oversharing' },
   { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
   { id: nanoid(), label: 'Toilet noises' },
-  { id: nanoid(), label: 'Caught not paying attention' }
+  { id: nanoid(), label: 'Can\'t access to document' },
+  { id: nanoid(), label: 'No one is taking notes' },
+  { id: nanoid(), label: '"But can we just talk about [random unrelated thing]"' }
 ]

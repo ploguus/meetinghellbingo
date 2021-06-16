@@ -8,19 +8,40 @@ import squareSource from '../_data/squares'
 
 const BingoSquare = ({ index, id, label, checked, onClick, isClickable = true } = {}) => (
   <button
-    className={`h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-white'}`}
+    className={`h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-red-50'}`}
     onClick={() => isClickable && onClick(id, index)}>
-    <p className={`text-center text-md ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
+    {id === 'FREE' ? (
+      <p className="text-center text-2xl text-white">{label}</p>
+    ) : (
+      <p className={`text-center text-sm ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
+    )}
   </button>
 )
 
-export default function Home(props) {
-  const { width, height } = useWindowSize()
+const WinnerText = ({ onClose }) => (
+  <div className="absolute flex flex-col justify-center items-center w-screen h-screen">
+    <div className="flex flex-col justify-center items-center w-full h-full">
+      <p className="text-9xl text-white uppercase win-text font-bold text-center">
+        WINRAR!
+      </p>
+      <p className="text-white text-center bg-black py-2 px-24 mt-10">
+        ...or lose really. I'm sorry. That meeting must have sucked.
+      </p>
 
+      <button className="bg-pink-600 text-white text-lg" onClick={onClose}>
+        Play again?
+      </button>
+    </div>
+  </div>
+)
+
+export default function Home(props) {
   const [ squares, setSquares ] = useState([])
   const [ checked, setChecked ] = useState([])
   const [ slug, setSlug ] = useState()
   const [ winner, setWinner ] = useState(false)
+  const [ width, setWidth ] = useState(0)
+  const [ height, setHeight ] = useState(0)
 
   useEffect(() => {
     const shuffled = []
@@ -50,6 +71,13 @@ export default function Home(props) {
     setWinner(isWinner)
   }, [checked])
 
+  useEffect(() => {
+    setWidth(global.window.screen.width)
+    setHeight(global.window.screen.height)
+
+    setWinner(true)
+  }, [global.window])
+
   const onClickSquare = (clickedId, index) => {
     const square = squares[index]
     const isChecked = checked.includes(index)
@@ -63,6 +91,7 @@ export default function Home(props) {
       <Head>
         <title>Are you in meeting hell?</title>
       </Head>
+      {winner ? <WinnerText /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
       <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen h-screen">
         <div className="w-full h-full flex items-center justify-center">
@@ -88,6 +117,8 @@ export default function Home(props) {
           </div>
         </div>
       </main>
+      <script async defer src="https://lalala.meetinghellbingo.com/latest.js"></script>
+      <noscript><img src="https://lalala.meetinghellbingo.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
     </>
   )
 }
