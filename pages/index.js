@@ -19,7 +19,7 @@ const BingoSquare = ({ index, id, label, checked, onClick, isClickable = true } 
 )
 
 const WinnerText = ({ onClose }) => (
-  <div className="absolute flex flex-col justify-center items-center w-screen h-screen">
+  <div className="absolute flex flex-col justify-center items-center w-screen min-h-screen h-screen">
     <div className="flex flex-col justify-center items-center w-full h-full bg-yellow-200">
       <p className="z-10 font-headline text-8xl md:text-9xl text-white uppercase win-text font-bold text-center">
         WINRAR!
@@ -31,6 +31,10 @@ const WinnerText = ({ onClose }) => (
       <button className="z-10 mt-4 bg-pink-600 text-white text-lg px-8 py-4 rounded font-bold" onClick={onClose}>
         Play again?
       </button>
+
+      <p className="z-10 text-yellow-800 font-bold text-center py-2 px-8 mt-10">
+        If you're here, I bet you're tired of long, pointless and painful meetings, which lead to no action. That's why we're doing something about it. We're building <a className="font-bold underline" href="https://meetingcanary.app?ref=bingo">Meeting Canary</a> to keep meetings organised and to make sure those 'to dos' actually get done. It's a new take on organising people-powered projects. No more repetitative meetings, unaccountable colleagues or never ending to do lists. Launching summer 2021!
+      </p>
     </div>
   </div>
 )
@@ -93,6 +97,8 @@ export default function Home(props) {
     window.sa_event = window.sa_event || function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]}
 
     if (window.sa_event) sa.current = window.sa_event
+
+    setWinner(true)
   }, [global.window])
 
   const onClickSquare = (clickedId, index) => {
@@ -117,6 +123,7 @@ export default function Home(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://meetinghellbingo.com" />
         <meta property="og:image" content="https://meetinghellbingo.com/shareimg.png" />
+        <meta name="og:description" content="Play bingo with all the ways your soul hurts during meetings." />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@meetingcanary" />
@@ -124,7 +131,7 @@ export default function Home(props) {
       </Head>
       {winner ? <WinnerText onClose={resetCard} /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
-      <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen">
+      <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen min-h-screen">
         <div className="w-full h-full flex md:items-center justify-center">
           <div className="bg-white md:w-1/2 shadow-2xl rounded-lg">
             <h1 className="font-headline text-5xl md:text-8xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
@@ -145,8 +152,8 @@ export default function Home(props) {
             </div>
 
             <div className="rounded-b-lg py-4">
-              <p className="text-center text-sm text-gray-400">
-                This is a fun project by <a className="font-bold" href="https://fiiv.dev">@fiiv</a>
+              <p className="mt-4 mb-8 mx-4 pt-4 text-center text-lg text-gray-500  border-t border-gray-200">
+                If you're here, I bet you're tired of long, pointless and painful meetings, which lead to no action. That's why we're doing something about it. We're building <a className="font-bold underline" href="https://meetingcanary.app?ref=bingo">Meeting Canary</a> to keep meetings organised and to make sure those 'to dos' actually get done. It's a new take on organising people-powered projects. No more repetitative meetings, unaccountable colleagues or never ending to do lists. Launching summer 2021!
               </p>
             </div>
           </div>
