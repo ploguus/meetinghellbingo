@@ -8,27 +8,27 @@ import squareSource from '../_data/squares'
 
 const BingoSquare = ({ index, id, label, checked, onClick, isClickable = true } = {}) => (
   <button
-    className={`h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-red-50'}`}
+    className={`md:h-24 flex items-center justify-center p-2 focus:outline-none rounded ${isClickable ? 'cursor-pointer' : 'cursor-default'} ${checked ? 'bg-red-700' : 'bg-red-50'}`}
     onClick={() => isClickable && onClick(id, index)}>
     {id === 'FREE' ? (
-      <p className="text-center text-2xl text-white">{label}</p>
+      <p className="text-center text-lg md:text-4xl text-white">{label}</p>
     ) : (
-      <p className={`text-center text-sm ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
+      <p className={`text-center text-2xs md:text-sm ${checked ? 'text-white' : 'text-red-700'}`}>{label}</p>
     )}
   </button>
 )
 
 const WinnerText = ({ onClose }) => (
   <div className="absolute flex flex-col justify-center items-center w-screen h-screen">
-    <div className="flex flex-col justify-center items-center w-full h-full">
-      <p className="text-9xl text-white uppercase win-text font-bold text-center">
+    <div className="flex flex-col justify-center items-center w-full h-full bg-yellow-200">
+      <p className="z-10 font-headline text-8xl md:text-9xl text-white uppercase win-text font-bold text-center">
         WINRAR!
       </p>
-      <p className="text-white text-center bg-black py-2 px-24 mt-10">
-        ...or lose really. I'm sorry. That meeting must have sucked.
+      <p className="z-10 text-yellow-800 font-bold text-center py-2 px-24 mt-10">
+        That meeting must have really sucked.
       </p>
 
-      <button className="bg-pink-600 text-white text-lg" onClick={onClose}>
+      <button className="z-10 mt-4 bg-pink-600 text-white text-lg px-8 py-4 rounded font-bold" onClick={onClose}>
         Play again?
       </button>
     </div>
@@ -43,7 +43,7 @@ export default function Home(props) {
   const [ width, setWidth ] = useState(0)
   const [ height, setHeight ] = useState(0)
 
-  useEffect(() => {
+  const shuffleSquares = () => {
     const shuffled = []
     const used = []
     let slugString = ''
@@ -64,6 +64,16 @@ export default function Home(props) {
 
     setSquares(shuffled)
     setSlug(slugString)
+  }
+
+  const resetCard = () => {
+    shuffleSquares()
+    setChecked([])
+    setWinner(false)
+  }
+
+  useEffect(() => {
+    shuffleSquares()
   }, [])
 
   useEffect(() => {
@@ -91,14 +101,14 @@ export default function Home(props) {
       <Head>
         <title>Are you in meeting hell?</title>
       </Head>
-      {winner ? <WinnerText /> : null}
+      {winner ? <WinnerText onClose={resetCard} /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
       <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen h-screen">
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="bg-white w-1/2 shadow-2xl rounded-lg">
-            <h1 className="text-6xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
+        <div className="w-full h-full flex md:items-center justify-center">
+          <div className="bg-white md:w-1/2 shadow-2xl rounded-lg">
+            <h1 className="font-headline text-5xl md:text-8xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
 
-            <div className="grid grid-cols-5 grid-flow-row gap-2 px-4 py-8">
+            <div className="grid grid-cols-5 grid-flow-row gap-2 px-2 md:px-4 py-8">
               {squares.map((props, index) => (
                 <BingoSquare
                   {...props}
@@ -118,7 +128,7 @@ export default function Home(props) {
         </div>
       </main>
       <script async defer src="https://lalala.meetinghellbingo.com/latest.js"></script>
-      <noscript><img src="https://lalala.meetinghellbingo.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+      <noscript><img src="https://lalala.meetinghellbingo.com/noscript.gif" alt="" referrerPolicy="no-referrer-when-downgrade" /></noscript>
     </>
   )
 }

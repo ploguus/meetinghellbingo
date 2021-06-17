@@ -5,7 +5,7 @@ export default [
   { id: nanoid(), label: 'Scheduled over lunch' },
   { id: nanoid(), label: 'Connection troubles' },
   { id: nanoid(), label: 'Useless slide deck' },
-  { id: nanoid(), label: 'No one did the work they promised last time' },
+  { id: nanoid(), label: 'No one did what was promised last time' },
   { id: nanoid(), label: 'Inside joke no one else gets' },
   { id: nanoid(), label: 'Too many people' },
   { id: nanoid(), label: 'Could easily have been an email' },
@@ -25,12 +25,12 @@ export default [
   { id: nanoid(), label: 'Presenter fails to share screen' },
   { id: nanoid(), label: 'No agenda, plan or topic' },
   { id: nanoid(), label: '10 minute long opinion speech' },
-  { id: nanoid(), label: 'Cat showing its ass like it\'s Onlyfans' },
+  { id: nanoid(), label: 'Cat showing its ass like it\'s on Onlyfans' },
   { id: nanoid(), label: 'Presenter needs to restart' },
   { id: nanoid(), label: 'Oversharing' },
   { id: nanoid(), label: 'Breakout groups but for pure bullshit' },
   { id: nanoid(), label: 'Toilet noises' },
   { id: nanoid(), label: 'Can\'t access to document' },
   { id: nanoid(), label: 'No one is taking notes' },
-  { id: nanoid(), label: '"But can we just talk about [random unrelated thing]"' }
+  { id: nanoid(), label: '"But can we just discuss [random unrelated thing]"' }
 ]

@@ -4,7 +4,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: [ 'Inter var', 'Inter', 'sans-serif' ]
+        sans: [ 'IBM Plex Sans Condensed', 'sans-serif' ],
+        headline: [ 'Bebas Neue', 'sans-serif' ]
+      },
+      fontSize: {
+        '2xs': '.65rem'
       }
     },
   },
