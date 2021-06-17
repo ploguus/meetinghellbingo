@@ -84,8 +84,6 @@ export default function Home(props) {
   useEffect(() => {
     setWidth(global.window.screen.width)
     setHeight(global.window.screen.height)
-
-    setWinner(true)
   }, [global.window])
 
   const onClickSquare = (clickedId, index) => {
