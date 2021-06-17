@@ -106,6 +106,10 @@ export default function Home(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://meetinghellbingo.com" />
         <meta property="og:image" content="https://meetinghellbingo.com/shareimg.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@meetingcanary" />
+        <meta name="twitter:creator" content="@mtimofiiv" />
       </Head>
       {winner ? <WinnerText onClose={resetCard} /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
