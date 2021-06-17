@@ -87,12 +87,12 @@ export default function Home(props) {
   }, [checked])
 
   useEffect(() => {
-    setWidth(global.window.screen.width)
-    setHeight(global.window.screen.height)
+    setWidth(window.screen.width)
+    setHeight(window.screen.height)
 
-    global.window.sa_event = global.window.sa_event || function(){var a=[].slice.call(arguments);global.window.sa_event.q?global.window.sa_event.q.push(a):global.window.sa_event.q=[a]}
+    window.sa_event = window.sa_event || function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]}
 
-    sa.current = global.window.sa_event
+    if (window.sa_event) sa.current = window.sa_event
   }, [global.window])
 
   const onClickSquare = (clickedId, index) => {
