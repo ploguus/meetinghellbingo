@@ -98,6 +98,14 @@ export default function Home(props) {
     <>
       <Head>
         <title>Are you in meeting hell?</title>
+        <meta name="description" content="Play bingo with all the ways your soul hurts during meetings." />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta property="og:title" content="Are you in meeting hell?" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://meetinghellbingo.com" />
+        <meta property="og:image" content="https://meetinghellbingo.com/shareimg.png" />
       </Head>
       {winner ? <WinnerText onClose={resetCard} /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
@@ -105,6 +113,10 @@ export default function Home(props) {
         <div className="w-full h-full flex md:items-center justify-center">
           <div className="bg-white md:w-1/2 shadow-2xl rounded-lg">
             <h1 className="font-headline text-5xl md:text-8xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
+
+            <div className="text-center pt-4">
+              <button className="text-gray-400" onClick={resetCard}>Generate a different bingo card</button>
+            </div>
 
             <div className="grid grid-cols-5 grid-flow-row gap-2 px-2 md:px-4 py-8">
               {squares.map((props, index) => (
