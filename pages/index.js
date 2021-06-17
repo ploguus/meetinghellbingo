@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
 import { useWindowSize } from 'react-use'
 import Confetti from 'confetti-react'
@@ -42,6 +42,7 @@ export default function Home(props) {
   const [ winner, setWinner ] = useState(false)
   const [ width, setWidth ] = useState(0)
   const [ height, setHeight ] = useState(0)
+  const sa = useRef(null)
 
   const shuffleSquares = () => {
     const shuffled = []
@@ -64,6 +65,8 @@ export default function Home(props) {
 
     setSquares(shuffled)
     setSlug(slugString)
+
+    if (sa.current) sa.current(`served__${slugString}`)
   }
 
   const resetCard = () => {
@@ -84,6 +87,10 @@ export default function Home(props) {
   useEffect(() => {
     setWidth(global.window.screen.width)
     setHeight(global.window.screen.height)
+
+    global.window.sa_event = global.window.sa_event || function(){var a=[].slice.call(arguments);global.window.sa_event.q?global.window.sa_event.q.push(a):global.window.sa_event.q=[a]}
+
+    sa.current = global.window.sa_event
   }, [global.window])
 
   const onClickSquare = (clickedId, index) => {
@@ -92,6 +99,8 @@ export default function Home(props) {
 
     if (isChecked) setChecked(checked.filter((i) => i !== index))
     else setChecked([ ...checked, index ])
+
+    if (sa.current) sa.current(`selected__${square.id}`)
   }
 
   return (
@@ -113,7 +122,7 @@ export default function Home(props) {
       </Head>
       {winner ? <WinnerText onClose={resetCard} /> : null}
       {winner ? <Confetti width={width} height={height} /> : null}
-      <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen h-screen">
+      <main className="bg-gradient-to-t from-yellow-400 via-red-500 to-pink-500 w-screen">
         <div className="w-full h-full flex md:items-center justify-center">
           <div className="bg-white md:w-1/2 shadow-2xl rounded-lg">
             <h1 className="font-headline text-5xl md:text-8xl uppercase text-center text-white py-4 bg-red-700 rounded-t-lg font-bold">Meeting Hell Bingo</h1>
