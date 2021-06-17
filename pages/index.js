@@ -82,6 +82,8 @@ export default function Home(props) {
   useEffect(() => {
     const isWinner = checkWin(checked)
     setWinner(isWinner)
+
+    if (isWinner && sa.current) sa.current(`win__${slug}`)
   }, [checked])
 
   useEffect(() => {
