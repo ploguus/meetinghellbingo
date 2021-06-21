@@ -154,6 +154,10 @@ export default function Home(props) {
                 If you're here, I bet you're tired of long, pointless and painful meetings, which lead to no action. That's why we're doing something about it. We're building <a className="font-bold underline" href="https://meetingcanary.app?ref=bingo">Meeting Canary</a> to keep meetings organised and to make sure those 'to dos' actually get done. It's a new take on organising people-powered projects. No more repetitative meetings, unaccountable colleagues or never ending to do lists. Launching summer 2021!
               </p>
             </div>
+
+            <div className="flex justify-center align-center mb-12">
+              <a href="https://www.producthunt.com/posts/meeting-hell-bingo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-meeting-hell-bingo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=300997&theme=dark" alt="Meeting Hell Bingo - Stuck in an awful meeting? At least you have this bingo card | Product Hunt" style={{ width: 250, height: 54 }} width={250} height={54} /></a>
+            </div>
           </div>
         </div>
       </main>
