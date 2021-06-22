@@ -112,8 +112,8 @@ export default function Home(props) {
   return (
     <>
       <Head>
-        <title>Are you in meeting hell?</title>
-        <meta name="description" content="Play bingo with all the ways your soul hurts during meetings." />
+        <title>Life Bingo</title>
+        <meta name="description" content="Bingo in real life!" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
