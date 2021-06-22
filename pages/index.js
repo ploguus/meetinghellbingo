@@ -157,6 +157,8 @@ export default function Home(props) {
 
             <div className="flex justify-center align-center mb-12">
               <a href="https://www.producthunt.com/posts/meeting-hell-bingo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-meeting-hell-bingo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=300997&theme=dark" alt="Meeting Hell Bingo - Stuck in an awful meeting? At least you have this bingo card | Product Hunt" style={{ width: 250, height: 54 }} width={250} height={54} /></a>
+              <div style={{ width: 10 }} />
+              <a href="https://simpleanalytics.com/?utm_source=meetinghellbingo.com&utm_content=badge" referrerpolicy="origin" target="_blank"><img src="https://simpleanalyticsbadge.com/meetinghellbingo.com" loading="lazy" referrerPolicy="no-referrer" crossorigin="anonymous" /></a>
             </div>
           </div>
         </div>
